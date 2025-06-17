@@ -1,0 +1,13 @@
+traces/
+bin/
+/build
+/third-party/accel-sim/SASS_parser/gpu-simulator/build/
+csv/
+logs/
+!
+*.o
+*.a
+*.so
+*.so.*
+*.lo
+*.bin

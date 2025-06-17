@@ -1,0 +1,261 @@
+APPARGS:
+    execs:
+##################### rodinia #####################
+        - b+tree-rodinia-3.1:
+            - args:  file ./data/mil.txt command ./data/command.txt
+              accel-sim-mem: 2G
+        - backprop-rodinia-3.1:
+            - args:  65536
+              accel-sim-mem: 1G
+        - dwt2d-rodinia-3.1:
+            # - args:  ./data/192.bmp -d 192x192 -f -5 -l 3
+            #   accel-sim-mem: 1G
+            - args:  ./data/rgb.bmp -d 1024x1024 -f -5 -l 3
+              accel-sim-mem: 1G
+        - gaussian-rodinia-3.1:
+            # - args:  -f ./data/matrix4.txt
+            #   accel-sim-mem: 1G
+            # - args:  -s 16
+            #   accel-sim-mem: 1G
+            # - args:  -f ./data/matrix208.txt
+            #   accel-sim-mem: 1G
+            # - args:  -s 64
+            #   accel-sim-mem: 1G
+            - args:  -s 256
+              accel-sim-mem: 1G
+        - heartwall-rodinia-3.1:
+            - args:  ./data/test.avi 1
+              accel-sim-mem: 1G
+        - hotspot-rodinia-3.1:
+            # - args:  512 2 2 ./data/temp_512 ./data/power_512 output.out
+            #   accel-sim-mem: 1G
+            - args:  1024 2 2 ./data/temp_1024 ./data/power_1024 output.out
+              accel-sim-mem: 3G
+        - hotspot3D-rodinia-3.1:
+            - args:  512 8 100 ./data/power_512x8 ./data/temp_512x8 output.out
+              accel-sim-mem: 4G
+        # - huffman-rodinia-3.1:
+        #     - args:  ./data/huffman/test1024_H2.206587175259.in
+        #       accel-sim-mem: 1G
+        - hybridsort-rodinia-3.1:
+            # - args:  r
+            #   accel-sim-mem: 7G
+            - args:  ./data/500000.txt
+              accel-sim-mem: 1G
+        # - lavaMD-rodinia-3.1:
+        #     - args:  -boxes1d 10
+        # - leukocyte-rodinia-3.1:
+        #     - args:  ./data/testfile.avi 5
+        - lud-rodinia-3.1:
+            # - args:  -s 256 -v
+            #   accel-sim-mem: 1G
+            - args:  -i ./data/512.dat
+              accel-sim-mem: 1G
+        # - mummergpu-rodinia-3.1:
+        #     - args:  ./data/NC_003997.fna ./data/NC_003997_q100bp.fna > NC_00399.out
+        #       accel-sim-mem: 1G
+        # - myocyte-rodinia-3.1:
+        #     - args:  100 1 0
+        #       accel-sim-mem: 1G
+        - nn-rodinia-3.1:
+            - args:  ./data/filelist_4 -r 5 -lat 30 -lng 90
+              accel-sim-mem: 1G
+        - nw-rodinia-3.1:
+            - args:  2048 10
+              accel-sim-mem: 1G
+        # - particlefilter_float-rodinia-3.1:
+        #     - args:  -x 128 -y 128 -z 10 -np 1000
+        #       accel-sim-mem: 1G
+        # - particlefilter_naive-rodinia-3.1:
+        #     - args:  -x 128 -y 128 -z 10 -np 1000
+        #       accel-sim-mem: 1G
+        - pathfinder-rodinia-3.1:
+            - args:  100000 100 20 > result.txt
+              accel-sim-mem: 1G
+        - streamcluster-rodinia-3.1:
+            - args:  3 6 16 65536 65536 1000 none output.txt 1 output.txt
+              accel-sim-mem: 1G
+            # - args:  10 20 256 65536 65536 1000 none output.txt 1
+            #   accel-sim-mem: 1G
+        - bfs-rodinia-3.1:
+            # - args:  ./data/graph4096.txt
+            #   accel-sim-mem: 1G
+            # - args:  ./data/graph65536.txt
+            #   accel-sim-mem: 1G
+            - args:  ./data/graph1MW_6.txt
+              accel-sim-mem: 3G
+        - cfd-rodinia-3.1: # too long...
+            - args:  ./data/fvcorr.domn.097K
+              accel-sim-mem: 1G
+            # - args:  ./data/fvcorr.domn.193K
+            #   accel-sim-mem: 1G
+            # - args:  ./data/missile.domn.0.2M
+            #   accel-sim-mem: 2G
+        - kmeans-rodinia-3.1:
+            # - args:  -o -i ./data/28k_4x_features.txt
+            #   accel-sim-mem: 1G
+            # - args:  -o -i ./data/kdd_cup
+            #   accel-sim-mem: 4G
+            - args:  -o -i ./data/819200.txt
+              accel-sim-mem: 1G
+        - srad_v1-rodinia-3.1:
+            - args:  100 0.5 502 458
+              accel-sim-mem: 1G
+        - srad_v2-rodinia-3.1:
+            - args:  2048 2048 0 127 0 127 0.5 2
+              accel-sim-mem: 9G
+
+##################### parboil ##################### 
+        # - parboil-sad:
+        #     - args: -i ./data/default/input/reference.bin,./data/default/input/frame.bin -o out.bin
+        #       accel-sim-mem: 4G
+        - parboil-sgemm:
+            - args: -i ./data/medium/input/matrix1.txt,./data/medium/input/matrix2t.txt,./data/medium/input/matrix2t.txt -o matrix3.txt
+              #accel-sim-mem: 8G
+
+        - parboil-stencil:
+            - args: -i ./data/small/input/128x128x32.bin -o 128x128x32.out -- 128 128 32 100
+              #accel-sim-mem: 1G
+            # - args: -i ./data/default/input/512x512x64x100.bin -o 512x512x64.out -- 512 512 64 100
+        - parboil-cutcp:
+            - args: -i ./data/small/input/watbox.sl40.pqr -o lattice.dat
+              #accel-sim-mem: 5G
+
+        - parboil-mri-q:
+            - args: -i ./data/small/input/32_32_32_dataset.bin -o 32_32_32_dataset.out
+              #accel-sim-mem: 1G
+
+#        - parboil-lbm:
+#            - args:  -i ./data/long/input/120_120_150_ldc.of -o reference.dat -- 3000
+
+        - parboil-histo:
+            - args: -i ./data/default/input/img.bin -o ref.bmp -- 20 4
+              #accel-sim-mem: 2G
+
+        - parboil-spmv:
+            - args: -i ./data/medium/input/bcsstk18.mtx,./data/medium/input/vector.bin -o bcsstk18.mtx.out
+              #accel-sim-mem: 2G
+            # - args: -i ./data/large/input/Dubcova3.mtx.bin,./data/large/input/vector.bin -o Dubcova3.mtx.out
+            #   accel-sim-mem: 2G              
+
+##################### Pannotia ##################### 
+        # - bc:
+        #     # - args: ./data/1k_128k.gr
+        #     #   accel-sim-mem: 1G
+        #     - args: ./data/2k_1M.gr
+        #       accel-sim-mem: 2G
+        - color_max:
+            - args: ./data/ecology1.graph 1
+              accel-sim-mem: 5G
+            # - args: ./data/G3_circuit.graph 1
+            #   accel-sim-mem: 2G
+        - color_maxmin:
+            - args: ./data/ecology1.graph 1
+              accel-sim-mem: 4G
+            # - args: ./data/G3_circuit.graph 1
+            #   accel-sim-mem: 2G
+        - fw:
+            - args: ./data/256_16384.gr
+              accel-sim-mem: 1G
+#            - args: ./data/512_65536.gr
+        - fw_block:
+            # - args: ./data/256_16384.gr
+            #   accel-sim-mem: 1G
+            - args: ./data/512_65536.gr
+              accel-sim-mem: 3G
+        - mis:
+            # - args: ./data/ecology1.graph 1
+            #   accel-sim-mem: 1G
+            - args: ./data/G3_circuit.graph 1
+              accel-sim-mem: 7G
+        # - pagerank:
+        #     - args: ./data/coAuthorsDBLP.graph 1
+        #       accel-sim-mem: 2G
+        - pagerank_spmv:
+            - args: ./data/coAuthorsDBLP.graph 1
+              accel-sim-mem: 8G
+
+################ cactus ###################
+        - DCG:
+            - args:
+        - GMS:
+            - args:
+        - GRU:
+            - args:
+        - LGT:
+            - args:
+        - LMC:
+            - args:
+        - LMR:
+            - args:
+        - NST:
+            - args:
+        - RFL:
+            - args:
+        - SPT:
+            - args:
+
+################ polybench #####################
+        - polybench-2DConvolution:
+            - args: 
+              accel-sim-mem: 1G
+        # - polybench-2mm:
+        #     - args: 
+        #       accel-sim-mem: 13G
+        - polybench-3DConvolution:
+            - args:
+              accel-sim-mem: 1G
+        - polybench-3mm:
+            - args: 
+              accel-sim-mem: 4G
+        - polybench-atax:
+            - args:
+              accel-sim-mem: 2G
+        - polybench-bicg:
+            - args:
+              accel-sim-mem: 2G
+        # - polybench-correlation:
+        #     - args:
+        #       accel-sim-mem: 160G
+        # - polybench-covariance:
+        #     - args:
+        #       accel-sim-mem: 160G
+        # - polybench-fdtd2d:
+        #     - args:
+        #       accel-sim-mem: 1G
+        - polybench-gemm:
+            - args:
+              accel-sim-mem: 4G
+        - polybench-gesummv:
+            - args: 
+              accel-sim-mem: 2G
+        # - polybench-gramschmidt:
+        #     - args:
+        #       accel-sim-mem: 3G
+        - polybench-mvt:
+            - args:
+              accel-sim-mem: 2G
+        # - polybench-syr2k:
+        #     - args:
+        #       accel-sim-mem: 25G
+        # - polybench-syrk:
+        #     - args:
+        #       accel-sim-mem: 8G
+
+##################### NVIDIA SDK #####################
+        - MersenneTwisterGP11213-cuda:
+            - args:        
+
+
+##################### Deepbench #####################
+        - conv_bench-tencore:
+            - args: inference half 341 79 32 2 32 10 5 0 0 2 2
+              accel-sim-mem: 7G
+
+        - gemm_bench-tencore:
+            - args: inference half 7680 1 2560 0 0
+              accel-sim-mem: 2G
+
+        - rnn_bench-tencore:
+            - args: inference half 1536 1 750 gru
+              accel-sim-mem: 12G
